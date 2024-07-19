@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaHome, FaStore, FaMapMarkerAlt } from 'react-icons/fa';
 
 function SearchForm({ onSearch }) {
   const [origin, setOrigin] = useState('');
@@ -28,37 +29,34 @@ function SearchForm({ onSearch }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label htmlFor="origin" className="block text-sm font-medium text-gray-700">Origin</label>
+      <div className="relative">
+        <FaHome className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
         <input
           type="text"
-          id="origin"
           value={origin}
           onChange={(e) => setOrigin(e.target.value)}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          required
+          placeholder="Origin"
+          className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-md"
         />
       </div>
-      <div>
-        <label htmlFor="stop" className="block text-sm font-medium text-gray-700">Stop (Brand)</label>
+      <div className="relative">
+        <FaStore className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
         <input
           type="text"
-          id="stop"
           value={stop}
           onChange={(e) => setStop(e.target.value)}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          required
+          placeholder="Stop (Brand)"
+          className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-md"
         />
       </div>
-      <div>
-        <label htmlFor="destination" className="block text-sm font-medium text-gray-700">Destination</label>
+      <div className="relative">
+        <FaMapMarkerAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
         <input
           type="text"
-          id="destination"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          required
+          placeholder="Destination"
+          className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-md"
         />
       </div>
       <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
