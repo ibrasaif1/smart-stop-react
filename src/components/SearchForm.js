@@ -45,7 +45,7 @@ function SearchForm({ onSearch }) {
           type="text"
           value={stop}
           onChange={(e) => setStop(e.target.value)}
-          placeholder="Stop (Brand)"
+          placeholder="Stop"
           className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-md"
         />
       </div>

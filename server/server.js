@@ -17,6 +17,7 @@ async function searchStops(origin, stop, destination) {
     // Get the main route
     const routeResponse = await axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&key=${API_KEY}`);
     const mainRoute = routeResponse.data.routes[0];
+    const timeWithoutStops = mainRoute.legs[0].duration.value / 60;
 
     // Find stops along the route
     const placesResponse = await axios.get(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(stop)}&location=${mainRoute.bounds.northeast.lat},${mainRoute.bounds.northeast.lng}&radius=50000&key=${API_KEY}`);
@@ -29,8 +30,10 @@ async function searchStops(origin, stop, destination) {
       const totalTime = routeWithStop.legs.reduce((sum, leg) => sum + leg.duration.value, 0) / 60; // Convert to minutes
 
       return {
+        businessName: potentialStop.name,
         address: potentialStop.formatted_address,
-        totalTime: Math.round(totalTime)
+        totalTime: Math.round(totalTime),
+        timeWithoutStops: Math.round(timeWithoutStops)
       };
     }));
 
